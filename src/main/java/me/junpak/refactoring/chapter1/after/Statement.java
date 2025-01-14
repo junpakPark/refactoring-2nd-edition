@@ -8,9 +8,6 @@ import me.junpak.refactoring.chapter1.data.Play;
 
 public class Statement {
 
-    public Statement() {
-    }
-
     public String statement(Invoice invoice, Map<String, Play> plays) {
         var totalAmount = 0;
         var volumeCredits = 0;
