@@ -10,12 +10,12 @@ import me.junpak.refactoring.chapter1.data.Play;
 public class Statement {
 
     public String statement(Invoice invoice, Map<String, Play> plays) {
-        final StatementData data = new StatementData();
+        final StatementData data = new StatementData(invoice.customer());
         return renderPlainText(data, invoice, plays);
     }
 
     private String renderPlainText(final StatementData data, final Invoice invoice, final Map<String, Play> plays) {
-        var result = new StringBuilder("청구 내역 (고객명: " + invoice.customer() + ")\n");
+        var result = new StringBuilder("청구 내역 (고객명: " + data.customer() + ")\n");
         for (var perf : invoice.performances()) {
             result.append(
                     String.format(
