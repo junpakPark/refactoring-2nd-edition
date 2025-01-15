@@ -12,8 +12,6 @@ public class Statement {
     public String statement(Invoice invoice, Map<String, Play> plays) {
         var result = new StringBuilder("청구 내역 (고객명: " + invoice.customer() + ")\n");
         for (var perf : invoice.performances()) {
-
-            // 청구 내역을 출력한다.
             result.append(
                     String.format(
                             "  %s: %s원 (%d석)\n",
@@ -30,19 +28,19 @@ public class Statement {
     }
 
     private int totalAmount(final Invoice invoice, final Map<String, Play> plays) {
-        var totalAmount = 0;
+        var result = 0;
         for (var perf : invoice.performances()) {
-            totalAmount += amountFor(plays, perf);
+            result += amountFor(plays, perf);
         }
-        return totalAmount;
+        return result;
     }
 
     private int totalVolumeCredits(final Invoice invoice, final Map<String, Play> plays) {
-        var volumeCredits = 0;
+        var result = 0;
         for (var perf : invoice.performances()) {
-            volumeCredits += volumeCreditsFor(plays, perf);
+            result += volumeCreditsFor(plays, perf);
         }
-        return volumeCredits;
+        return result;
     }
 
     private String usd(final int aNumber) {
