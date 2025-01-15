@@ -10,6 +10,7 @@ import me.junpak.refactoring.chapter1.data.Play;
 public class Statement {
 
     public String statement(Invoice invoice, Map<String, Play> plays) {
+        final StatementData data = new StatementData();
         return renderPlainText(invoice, plays);
     }
 
