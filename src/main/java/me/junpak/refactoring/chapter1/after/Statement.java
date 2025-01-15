@@ -22,19 +22,19 @@ public class Statement {
                     String.format(
                             "  %s: %s원 (%d석)\n",
                             playFor(plays, perf).name(),
-                            format(amountFor(plays, perf) / 100.0),
+                            usd(amountFor(plays, perf) / 100.0),
                             perf.audience()
                     )
             );
             totalAmount += amountFor(plays, perf);
         }
-        result.append(String.format("총액: %s원\n", format(totalAmount / 100.0)));
+        result.append(String.format("총액: %s원\n", usd(totalAmount / 100.0)));
         result.append(String.format("적립 포인트: %d점\n", volumeCredits));
 
         return result.toString();
     }
 
-    private String format(final double aNumber) {
+    private String usd(final double aNumber) {
         final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
         return format.format(aNumber);
