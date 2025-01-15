@@ -23,14 +23,19 @@ public class Statement {
                     )
             );
         }
-        var totalAmount = 0;
-        for (var perf : invoice.performances()) {
-            totalAmount += amountFor(plays, perf);
-        }
+        var totalAmount = totalAmount(invoice, plays);
         result.append(String.format("총액: %s원\n", usd(totalAmount)));
         result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(invoice, plays)));
 
         return result.toString();
+    }
+
+    private int totalAmount(final Invoice invoice, final Map<String, Play> plays) {
+        var totalAmount = 0;
+        for (var perf : invoice.performances()) {
+            totalAmount += amountFor(plays, perf);
+        }
+        return totalAmount;
     }
 
     private int totalVolumeCredits(final Invoice invoice, final Map<String, Play> plays) {
