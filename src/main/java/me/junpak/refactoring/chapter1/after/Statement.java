@@ -23,6 +23,8 @@ public class Statement {
                             perf.audience()
                     )
             );
+        }
+        for (var perf : invoice.performances()) {
             totalAmount += amountFor(plays, perf);
         }
         result.append(String.format("총액: %s원\n", usd(totalAmount)));
