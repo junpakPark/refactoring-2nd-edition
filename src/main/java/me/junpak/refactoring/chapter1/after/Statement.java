@@ -35,12 +35,12 @@ public class Statement {
         return result.toString();
     }
 
-    private int volumeCreditsFor(final Map<String, Play> plays, final Performance perf) {
+    private int volumeCreditsFor(final Map<String, Play> plays, final Performance aPerformance) {
         var volumeCredits = 0;
-        volumeCredits += Math.max(perf.audience() - 30, 0);
+        volumeCredits += Math.max(aPerformance.audience() - 30, 0);
 
-        if ("comedy".equals(playFor(plays, perf).type())) {
-            volumeCredits += Math.floor(perf.audience() / 5);
+        if ("comedy".equals(playFor(plays, aPerformance).type())) {
+            volumeCredits += Math.floor(aPerformance.audience() / 5);
         }
         return volumeCredits;
     }
