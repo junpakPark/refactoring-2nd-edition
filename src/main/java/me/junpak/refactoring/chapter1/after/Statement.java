@@ -16,7 +16,7 @@ public class Statement {
         final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
         for (var perf : invoice.performances()) {
-            var thisAmount = amountFor(plays, perf, playFor(plays, perf));
+            var thisAmount = amountFor(plays, perf);
 
             // 포인트를 적립한다.
             volumeCredits += Math.max(perf.audience() - 30, 0);
@@ -47,7 +47,7 @@ public class Statement {
         return plays.get(aPerformance.playID());
     }
 
-    private int amountFor(final Map<String, Play> plays, final Performance aPerformance, final Play play) {
+    private int amountFor(final Map<String, Play> plays, final Performance aPerformance) {
         var result = 0;
         switch (playFor(plays, aPerformance).type()) {
             case "tragedy":
