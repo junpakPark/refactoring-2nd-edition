@@ -8,8 +8,10 @@ public record EnrichPerformance(
         String playID,
         int audience,
         Play play,
-        int amount
+        int amount,
+        int volumeCredits
 ) {
+
     public static EnrichPerformance of(final Performance aPerformance, final Map<String, Play> plays) {
         final Play play = playFor(aPerformance, plays);
 
@@ -17,7 +19,8 @@ public record EnrichPerformance(
                 aPerformance.playID(),
                 aPerformance.audience(),
                 play,
-                amountFor(aPerformance, play)
+                amountFor(aPerformance, play),
+                volumeCreditsFor(aPerformance, play)
         );
     }
 
@@ -43,6 +46,16 @@ public record EnrichPerformance(
                 break;
             default:
                 throw new IllegalArgumentException("알 수 없는 장르: " + play.type());
+        }
+        return result;
+    }
+
+    private static int volumeCreditsFor(final Performance aPerformance, final Play play) {
+        var result = 0;
+        result += Math.max(aPerformance.audience() - 30, 0);
+
+        if ("comedy".equals(play.type())) {
+            result += Math.floor(aPerformance.audience() / 5);
         }
         return result;
     }
