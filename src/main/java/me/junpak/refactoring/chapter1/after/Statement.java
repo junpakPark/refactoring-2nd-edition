@@ -47,7 +47,7 @@ public class Statement {
     private int totalVolumeCredits(final StatementData data) {
         var result = 0;
         for (var perf : data.performances()) {
-            result += volumeCreditsFor(perf);
+            result += perf.volumeCredits();
         }
         return result;
     }
@@ -56,16 +56,6 @@ public class Statement {
         final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
         return format.format(aNumber / 100.0);
-    }
-
-    private int volumeCreditsFor(final EnrichPerformance aPerformance) {
-        var result = 0;
-        result += Math.max(aPerformance.audience() - 30, 0);
-
-        if ("comedy".equals(aPerformance.play().type())) {
-            result += Math.floor(aPerformance.audience() / 5);
-        }
-        return result;
     }
 
 }
