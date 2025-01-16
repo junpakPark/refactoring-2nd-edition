@@ -25,7 +25,7 @@ public class Statement {
                     String.format(
                             "  %s: %s원 (%d석)\n",
                             perf.play().name(),
-                            usd(amountFor(perf)),
+                            usd(perf.amount()),
                             perf.audience()
                     )
             );
@@ -39,7 +39,7 @@ public class Statement {
     private int totalAmount(final StatementData data) {
         var result = 0;
         for (var perf : data.performances()) {
-            result += amountFor(perf);
+            result += perf.amount();
         }
         return result;
     }
@@ -64,28 +64,6 @@ public class Statement {
 
         if ("comedy".equals(aPerformance.play().type())) {
             result += Math.floor(aPerformance.audience() / 5);
-        }
-        return result;
-    }
-
-    private int amountFor(final EnrichPerformance aPerformance) {
-        var result = 0;
-        switch (aPerformance.play().type()) {
-            case "tragedy":
-                result = 40000;
-                if (aPerformance.audience() > 30) {
-                    result += 1000 * (aPerformance.audience() - 30);
-                }
-                break;
-            case "comedy":
-                result = 30000;
-                if (aPerformance.audience() > 20) {
-                    result += 10000 + 500 * (aPerformance.audience() - 20);
-                }
-                result += 300 * aPerformance.audience();
-                break;
-            default:
-                throw new IllegalArgumentException("알 수 없는 장르: " + aPerformance.play().type());
         }
         return result;
     }
