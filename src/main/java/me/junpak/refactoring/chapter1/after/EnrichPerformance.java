@@ -29,13 +29,7 @@ public record EnrichPerformance(
     }
 
     private static int volumeCreditsFor(final Performance aPerformance, final Play play) {
-        var result = 0;
-        result += Math.max(aPerformance.audience() - 30, 0);
-
-        if ("comedy".equals(play.type())) {
-            result += Math.floor(aPerformance.audience() / 5);
-        }
-        return result;
+        return new PerformanceCalculator(aPerformance, play).volumeCredits();
     }
 
 }
