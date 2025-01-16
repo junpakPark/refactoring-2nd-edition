@@ -4,13 +4,17 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
 import me.junpak.refactoring.chapter1.data.Invoice;
-import me.junpak.refactoring.chapter1.data.Performance;
 import me.junpak.refactoring.chapter1.data.Play;
 
 public class Statement {
 
     public String statement(Invoice invoice, Map<String, Play> plays) {
-        final StatementData data = new StatementData(invoice.customer(), invoice.performances());
+        final StatementData data = new StatementData(
+                invoice.customer(),
+                invoice.performances().stream()
+                        .map(EnrichPerformance::new)
+                        .toList()
+        );
         return renderPlainText(data, plays);
     }
 
@@ -54,7 +58,7 @@ public class Statement {
         return format.format(aNumber / 100.0);
     }
 
-    private int volumeCreditsFor(final Map<String, Play> plays, final Performance aPerformance) {
+    private int volumeCreditsFor(final Map<String, Play> plays, final EnrichPerformance aPerformance) {
         var result = 0;
         result += Math.max(aPerformance.audience() - 30, 0);
 
@@ -64,11 +68,11 @@ public class Statement {
         return result;
     }
 
-    private Play playFor(final Map<String, Play> plays, final Performance aPerformance) {
+    private Play playFor(final Map<String, Play> plays, final EnrichPerformance aPerformance) {
         return plays.get(aPerformance.playID());
     }
 
-    private int amountFor(final Map<String, Play> plays, final Performance aPerformance) {
+    private int amountFor(final Map<String, Play> plays, final EnrichPerformance aPerformance) {
         var result = 0;
         switch (playFor(plays, aPerformance).type()) {
             case "tragedy":
