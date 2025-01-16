@@ -10,4 +10,15 @@ public class ComedyPerformanceCalculator extends PerformanceCalculator {
         super(aPerformance, aPlay);
     }
 
+    @Override
+    public int amount() {
+        var result = 30000;
+        if (performance().audience() > 20) {
+            result += 10000 + 500 * (performance().audience() - 20);
+        }
+        result += 300 * performance().audience();
+
+        return result;
+    }
+
 }
