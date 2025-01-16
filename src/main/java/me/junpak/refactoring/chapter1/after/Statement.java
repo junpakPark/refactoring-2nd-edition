@@ -9,13 +9,7 @@ import me.junpak.refactoring.chapter1.data.Play;
 public class Statement {
 
     public String statement(Invoice invoice, Map<String, Play> plays) {
-        final StatementData data = new StatementData(
-                invoice.customer(),
-                invoice.performances().stream()
-                        .map(performance -> EnrichPerformance.of(performance, plays))
-                        .toList()
-        );
-        return renderPlainText(data);
+        return renderPlainText(StatementData.createStatementData(invoice, plays));
     }
 
     private String renderPlainText(final StatementData data) {
