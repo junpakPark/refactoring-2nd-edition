@@ -1,5 +1,7 @@
 package me.junpak.refactoring.chapter1.after;
 
+import me.junpak.refactoring.chapter1.after.calculator.ComedyPerformanceCalculator;
+import me.junpak.refactoring.chapter1.after.calculator.TragedyPerformanceCalculator;
 import me.junpak.refactoring.chapter1.data.Performance;
 import me.junpak.refactoring.chapter1.data.Play;
 
@@ -14,7 +16,11 @@ public class PerformanceCalculator {
     }
 
     public static PerformanceCalculator createPerformanceCalculator(final Performance aPerformance, final Play aPlay) {
-        return new PerformanceCalculator(aPerformance, aPlay);
+        return switch (aPlay.type()) {
+            case "tragedy" -> new TragedyPerformanceCalculator(aPerformance, aPlay);
+            case "comedy" -> new ComedyPerformanceCalculator(aPerformance, aPlay);
+            default -> throw new IllegalArgumentException("알 수 없는 장르: " + aPlay.type());
+        };
     }
 
     public int amount() {
