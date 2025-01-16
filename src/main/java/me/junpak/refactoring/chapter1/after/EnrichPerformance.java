@@ -29,25 +29,7 @@ public record EnrichPerformance(
     }
 
     private static int amountFor(final Performance aPerformance, final Play play) {
-        var result = 0;
-        switch (play.type()) {
-            case "tragedy":
-                result = 40000;
-                if (aPerformance.audience() > 30) {
-                    result += 1000 * (aPerformance.audience() - 30);
-                }
-                break;
-            case "comedy":
-                result = 30000;
-                if (aPerformance.audience() > 20) {
-                    result += 10000 + 500 * (aPerformance.audience() - 20);
-                }
-                result += 300 * aPerformance.audience();
-                break;
-            default:
-                throw new IllegalArgumentException("알 수 없는 장르: " + play.type());
-        }
-        return result;
+        return new PerformanceCalculator(aPerformance, play).amount();
     }
 
     private static int volumeCreditsFor(final Performance aPerformance, final Play play) {
