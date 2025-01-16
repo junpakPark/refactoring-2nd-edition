@@ -25,22 +25,16 @@ public record StatementData(
         );
     }
 
-
     private static int totalAmount(final List<EnrichPerformance> performances) {
-        var result = 0;
-        for (var perf : performances) {
-            result += perf.amount();
-        }
-        return result;
+        return performances.stream()
+                .mapToInt(EnrichPerformance::amount)
+                .sum();
     }
 
     private static int totalVolumeCredits(final List<EnrichPerformance> performances) {
-        var result = 0;
-        for (var perf : performances) {
-            result += perf.volumeCredits();
-        }
-        return result;
+        return performances.stream()
+                .mapToInt(EnrichPerformance::volumeCredits)
+                .sum();
     }
-
 
 }
