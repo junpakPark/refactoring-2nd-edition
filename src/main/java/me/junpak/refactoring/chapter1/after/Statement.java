@@ -10,13 +10,13 @@ import me.junpak.refactoring.chapter1.data.Play;
 public class Statement {
 
     public String statement(Invoice invoice, Map<String, Play> plays) {
-        final StatementData data = new StatementData(invoice.customer());
+        final StatementData data = new StatementData(invoice.customer(), invoice.performances());
         return renderPlainText(data, invoice, plays);
     }
 
     private String renderPlainText(final StatementData data, final Invoice invoice, final Map<String, Play> plays) {
         var result = new StringBuilder("청구 내역 (고객명: " + data.customer() + ")\n");
-        for (var perf : invoice.performances()) {
+        for (var perf : data.performances()) {
             result.append(
                     String.format(
                             "  %s: %s원 (%d석)\n",
@@ -26,23 +26,23 @@ public class Statement {
                     )
             );
         }
-        result.append(String.format("총액: %s원\n", usd(totalAmount(invoice, plays))));
-        result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(invoice, plays)));
+        result.append(String.format("총액: %s원\n", usd(totalAmount(data, plays))));
+        result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(data, plays)));
 
         return result.toString();
     }
 
-    private int totalAmount(final Invoice invoice, final Map<String, Play> plays) {
+    private int totalAmount(final StatementData data, final Map<String, Play> plays) {
         var result = 0;
-        for (var perf : invoice.performances()) {
+        for (var perf : data.performances()) {
             result += amountFor(plays, perf);
         }
         return result;
     }
 
-    private int totalVolumeCredits(final Invoice invoice, final Map<String, Play> plays) {
+    private int totalVolumeCredits(final StatementData data, final Map<String, Play> plays) {
         var result = 0;
-        for (var perf : invoice.performances()) {
+        for (var perf : data.performances()) {
             result += volumeCreditsFor(plays, perf);
         }
         return result;
