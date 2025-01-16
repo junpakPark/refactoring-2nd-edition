@@ -24,26 +24,10 @@ public class Statement {
                     )
             );
         }
-        result.append(String.format("총액: %s원\n", usd(totalAmount(data))));
-        result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(data)));
+        result.append(String.format("총액: %s원\n", usd(data.totalAmount())));
+        result.append(String.format("적립 포인트: %d점\n", data.totalVolumeCredits()));
 
         return result.toString();
-    }
-
-    private int totalAmount(final StatementData data) {
-        var result = 0;
-        for (var perf : data.performances()) {
-            result += perf.amount();
-        }
-        return result;
-    }
-
-    private int totalVolumeCredits(final StatementData data) {
-        var result = 0;
-        for (var perf : data.performances()) {
-            result += perf.volumeCredits();
-        }
-        return result;
     }
 
     private String usd(final int aNumber) {
