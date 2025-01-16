@@ -10,4 +10,13 @@ public class TragedyPerformanceCalculator extends PerformanceCalculator {
         super(aPerformance, aPlay);
     }
 
+    @Override
+    public int amount() {
+        var result = 40000;
+        if (performance().audience() > 30) {
+            result += 1000 * (performance().audience() - 30);
+        }
+        return result;
+    }
+
 }
