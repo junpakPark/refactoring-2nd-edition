@@ -13,15 +13,14 @@ public record EnrichPerformance(
 ) {
 
     public static EnrichPerformance of(final Performance aPerformance, final Map<String, Play> plays) {
-        final PerformanceCalculator calculator = new PerformanceCalculator(aPerformance);
-        final Play play = playFor(aPerformance, plays);
+        final PerformanceCalculator calculator = new PerformanceCalculator(aPerformance, playFor(aPerformance, plays));
 
         return new EnrichPerformance(
                 aPerformance.playID(),
                 aPerformance.audience(),
-                play,
-                amountFor(aPerformance, play),
-                volumeCreditsFor(aPerformance, play)
+                calculator.play(),
+                amountFor(aPerformance, calculator.play()),
+                volumeCreditsFor(aPerformance, calculator.play())
         );
     }
 
