@@ -12,7 +12,7 @@ public class Statement {
         final StatementData data = new StatementData(
                 invoice.customer(),
                 invoice.performances().stream()
-                        .map(performance -> new EnrichPerformance(performance, plays))
+                        .map(performance -> EnrichPerformance.of(performance, plays))
                         .toList()
         );
         return renderPlainText(data);
