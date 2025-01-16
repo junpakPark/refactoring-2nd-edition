@@ -35,6 +35,16 @@ public class PerformanceCalculator {
         return result;
     }
 
+    public int volumeCredits() {
+        var result = 0;
+        result += Math.max(this.performance.audience() - 30, 0);
+
+        if ("comedy".equals(this.play.type())) {
+            result += Math.floor(this.performance.audience() / 5);
+        }
+        return result;
+    }
+
     public Performance performance() {
         return performance;
     }
