@@ -5,7 +5,7 @@ import me.junpak.refactoring.chapter1.after.calculator.TragedyPerformanceCalcula
 import me.junpak.refactoring.chapter1.data.Performance;
 import me.junpak.refactoring.chapter1.data.Play;
 
-public class PerformanceCalculator {
+public abstract class PerformanceCalculator {
 
     private final Performance performance;
     private final Play play;
@@ -23,23 +23,7 @@ public class PerformanceCalculator {
         };
     }
 
-    public int amount() {
-        var result = 0;
-        switch (this.play.type()) {
-            case "tragedy":
-                throw new IllegalStateException("오류 발생");
-            case "comedy":
-                result = 30000;
-                if (this.performance.audience() > 20) {
-                    result += 10000 + 500 * (this.performance.audience() - 20);
-                }
-                result += 300 * this.performance.audience();
-                break;
-            default:
-                throw new IllegalArgumentException("알 수 없는 장르: " + this.play.type());
-        }
-        return result;
-    }
+    public abstract int amount();
 
     public int volumeCredits() {
         var result = 0;
