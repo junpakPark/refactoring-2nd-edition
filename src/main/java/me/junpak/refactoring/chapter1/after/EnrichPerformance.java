@@ -20,16 +20,12 @@ public record EnrichPerformance(
                 aPerformance.audience(),
                 calculator.play(),
                 calculator.amount(),
-                volumeCreditsFor(aPerformance, calculator.play())
+                calculator.volumeCredits()
         );
     }
 
     private static Play playFor(final Performance aPerformance, final Map<String, Play> plays) {
         return plays.get(aPerformance.playID());
-    }
-
-    private static int volumeCreditsFor(final Performance aPerformance, final Play play) {
-        return new PerformanceCalculator(aPerformance, play).volumeCredits();
     }
 
 }
