@@ -17,5 +17,4 @@ public record EnrichPerformance(
         return plays.get(aPerformance.playID());
     }
 
-
 }
