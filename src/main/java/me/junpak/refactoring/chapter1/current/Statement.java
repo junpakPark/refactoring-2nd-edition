@@ -15,12 +15,12 @@ public class Statement {
     public static final NumberFormat US_CURRENCY_FORMAT = NumberFormat.getCurrencyInstance(Locale.US);
 
     public String statement(Invoice invoice, Map<String, Play> plays) {
-        final StatementData data = new StatementData();
+        final StatementData data = new StatementData(invoice.customer());
         return renderPlainText(data, invoice, plays);
     }
 
     private String renderPlainText(final StatementData data, final Invoice invoice, final Map<String, Play> plays) {
-        var result = new StringBuilder("청구 내역 (고객명: " + invoice.customer() + ")").append(LF);
+        var result = new StringBuilder("청구 내역 (고객명: " + data.customer() + ")").append(LF);
 
         for (var perf : invoice.performances()) {
             result.append(String.format(
