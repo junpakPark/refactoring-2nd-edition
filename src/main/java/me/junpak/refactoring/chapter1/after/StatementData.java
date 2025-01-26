@@ -2,8 +2,8 @@ package me.junpak.refactoring.chapter1.after;
 
 import java.util.List;
 import java.util.Map;
-import me.junpak.refactoring.chapter1.data.Invoice;
-import me.junpak.refactoring.chapter1.data.Play;
+import me.junpak.refactoring.chapter1.after.data.Invoice;
+import me.junpak.refactoring.chapter1.after.data.Play;
 
 public record StatementData(
         String customer,

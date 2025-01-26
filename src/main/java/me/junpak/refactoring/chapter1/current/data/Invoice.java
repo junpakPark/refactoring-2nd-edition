@@ -1,4 +1,4 @@
-package me.junpak.refactoring.chapter1.data;
+package me.junpak.refactoring.chapter1.current.data;
 
 import java.util.List;
 

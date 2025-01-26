@@ -1,10 +1,10 @@
-package me.junpak.refactoring.chapter1.before;
+package me.junpak.refactoring.chapter1.current;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
-import me.junpak.refactoring.chapter1.before.data.Invoice;
-import me.junpak.refactoring.chapter1.before.data.Play;
+import me.junpak.refactoring.chapter1.current.data.Invoice;
+import me.junpak.refactoring.chapter1.current.data.Play;
 
 
 public class Statement {
