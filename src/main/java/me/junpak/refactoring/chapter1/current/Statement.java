@@ -11,6 +11,7 @@ import me.junpak.refactoring.chapter1.current.data.Play;
 public class Statement {
 
     public static final String LF = System.lineSeparator();
+    public static final NumberFormat US_CURRENCY_FORMAT = NumberFormat.getCurrencyInstance(Locale.US);
 
     public String statement(Invoice invoice, Map<String, Play> plays) {
         var totalAmount = 0;
@@ -40,7 +41,7 @@ public class Statement {
     }
 
     private String format(double amount) {
-        final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+        final NumberFormat format = US_CURRENCY_FORMAT;
 
         return format.format(amount);
     }
