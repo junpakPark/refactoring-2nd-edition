@@ -16,10 +16,10 @@ public class Statement {
 
     public String statement(Invoice invoice, Map<String, Play> plays) {
         final StatementData data = new StatementData();
-        return renderPlainText(invoice, plays);
+        return renderPlainText(data, invoice, plays);
     }
 
-    private String renderPlainText(final Invoice invoice, final Map<String, Play> plays) {
+    private String renderPlainText(final StatementData data, final Invoice invoice, final Map<String, Play> plays) {
         var result = new StringBuilder("청구 내역 (고객명: " + invoice.customer() + ")").append(LF);
 
         for (var perf : invoice.performances()) {
