@@ -41,9 +41,7 @@ public class Statement {
     }
 
     private String format(double amount) {
-        final NumberFormat format = US_CURRENCY_FORMAT;
-
-        return format.format(amount);
+        return US_CURRENCY_FORMAT.format(amount);
     }
 
     private int volumeCreditsFor(final Map<String, Play> plays, final Performance aPerformance) {
