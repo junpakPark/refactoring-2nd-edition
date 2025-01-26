@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import me.junpak.refactoring.chapter1.current.model.calculator.PerformanceCalculatorImpl;
 import me.junpak.refactoring.chapter1.current.model.data.EnrichPerformance;
 import me.junpak.refactoring.chapter1.current.model.data.Invoice;
 import me.junpak.refactoring.chapter1.current.model.data.Performance;
@@ -24,7 +25,7 @@ class StatementFactoryTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        sut = new StatementFactory();
+        sut = new StatementFactory(new PerformanceCalculatorImpl());
 
         final ClassLoader classLoader = getClass().getClassLoader();
         final ObjectMapper mapper = new ObjectMapper();

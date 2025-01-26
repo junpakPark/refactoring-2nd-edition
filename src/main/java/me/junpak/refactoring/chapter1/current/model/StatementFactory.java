@@ -10,6 +10,12 @@ import me.junpak.refactoring.chapter1.current.model.data.Statement;
 
 public class StatementFactory {
 
+    private final PerformanceCalculator calculator;
+
+    public StatementFactory(final PerformanceCalculator performanceCalculator) {
+        this.calculator = performanceCalculator;
+    }
+
     public Statement createStatement(final Invoice invoice, final Map<String, Play> plays) {
         final List<EnrichPerformance> enrichPerformances = invoice.performances().stream()
                 .map(performance -> enrichPerformance(performance, plays.get(performance.playID())))
