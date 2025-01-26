@@ -41,11 +41,11 @@ public class Statement {
     }
 
     private int volumeCreditsFor(final Map<String, Play> plays, final Performance aPerformance) {
-        var volumeCredits = Math.max(aPerformance.audience() - 30, 0);
+        var result = Math.max(aPerformance.audience() - 30, 0);
         if ("comedy".equals(plays.get(aPerformance.playID()).type())) {
-            volumeCredits += aPerformance.audience() / 5;
+            result += aPerformance.audience() / 5;
         }
-        return volumeCredits;
+        return result;
     }
 
     private int amountFor(final Performance aPerformance, final Play aPlay) {
