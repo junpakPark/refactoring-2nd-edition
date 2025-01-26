@@ -28,10 +28,9 @@ public class Statement {
                     .append(LF);
             totalAmount += amountFor(perf, plays.get(perf.playID()));
         }
-        var volumeCredits = totalVolumeCredits(invoice, plays);
 
         result.append(String.format("총액: %s원", usd(totalAmount))).append(LF);
-        result.append(String.format("적립 포인트: %d점", volumeCredits)).append(LF);
+        result.append(String.format("적립 포인트: %d점", totalVolumeCredits(invoice, plays))).append(LF);
 
         return result.toString();
     }
