@@ -11,7 +11,7 @@ import me.junpak.refactoring.chapter1.current.data.EnrichPerformance;
 import me.junpak.refactoring.chapter1.current.data.Invoice;
 import me.junpak.refactoring.chapter1.current.data.Performance;
 import me.junpak.refactoring.chapter1.current.data.Play;
-import me.junpak.refactoring.chapter1.current.data.StatementData;
+import me.junpak.refactoring.chapter1.current.data.Statement;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,9 +47,9 @@ class StatementFactoryTest {
     }
 
     @Test
-    void createStatementData() {
+    void createStatement() {
         // when
-        final StatementData actual = sut.createStatementData(invoice, plays);
+        final Statement actual = sut.createStatement(invoice, plays);
 
         // then
         SoftAssertions.assertSoftly(softly -> {

@@ -10,7 +10,7 @@ import java.util.Map;
 import me.junpak.refactoring.chapter1.current.StatementFactory;
 import me.junpak.refactoring.chapter1.current.data.Invoice;
 import me.junpak.refactoring.chapter1.current.data.Play;
-import me.junpak.refactoring.chapter1.current.data.StatementData;
+import me.junpak.refactoring.chapter1.current.data.Statement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -46,7 +46,7 @@ class OutputViewTest {
     @Test
     void renderPlainText() {
         // given
-        final StatementData data = factory.createStatementData(invoices.get(0), plays);
+        final Statement data = factory.createStatement(invoices.get(0), plays);
         final String expected = """
                 청구 내역 (고객명: BigCo)
                   Hamlet: $650.00원 (55석)
@@ -66,7 +66,7 @@ class OutputViewTest {
     @Test
     void renderHtml() {
         // given
-        final StatementData data = factory.createStatementData(invoices.get(0), plays);
+        final Statement data = factory.createStatement(invoices.get(0), plays);
         final String expected = """
                 <h1>청구 내역 (고객명: BigCo)</h1>
                 <table>

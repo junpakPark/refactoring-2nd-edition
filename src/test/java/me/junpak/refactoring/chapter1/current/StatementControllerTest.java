@@ -13,9 +13,9 @@ import me.junpak.refactoring.chapter1.current.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class StatementTest {
+class StatementControllerTest {
 
-    private final Statement sut = new Statement(new StatementFactory(), new OutputView());
+    private final StatementController sut = new StatementController(new StatementFactory(), new OutputView());
 
     private Map<String, Play> plays;
     private List<Invoice> invoices;
