@@ -24,19 +24,15 @@ public class StatementFactory {
     }
 
     private int totalAmount(final List<EnrichPerformance> performances) {
-        var result = 0;
-        for (var perf : performances) {
-            result += perf.amount();
-        }
-        return result;
+        return performances.stream()
+                .mapToInt(EnrichPerformance::amount)
+                .sum();
     }
 
     private int totalVolumeCredits(final List<EnrichPerformance> performances) {
-        var result = 0;
-        for (var perf : performances) {
-            result += perf.volumeCredits();
-        }
-        return result;
+        return performances.stream()
+                .mapToInt(EnrichPerformance::volumeCredits)
+                .sum();
     }
 
     public EnrichPerformance enrichPerformance(final Performance aPerformance, final Play aPlay) {
