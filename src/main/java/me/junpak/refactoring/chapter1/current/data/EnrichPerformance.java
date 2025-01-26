@@ -4,6 +4,7 @@ public record EnrichPerformance(
         String playID,
         int audience,
         Play play,
-        int amount
+        int amount,
+        int volumeCredits
 ) {
 }

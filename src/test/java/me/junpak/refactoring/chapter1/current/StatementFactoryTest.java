@@ -60,6 +60,7 @@ class StatementFactoryTest {
             assertThat(actual.audience()).isEqualTo(performance.audience());
             assertThat(actual.play()).isEqualTo(play);
             assertThat(actual.amount()).isEqualTo(65000);
+            assertThat(actual.volumeCredits()).isEqualTo(25);
         });
     }
 

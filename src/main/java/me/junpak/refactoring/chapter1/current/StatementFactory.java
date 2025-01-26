@@ -11,7 +11,8 @@ public class StatementFactory {
                 aPerformance.playID(),
                 aPerformance.audience(),
                 aPlay,
-                amountFor(aPerformance, aPlay)
+                amountFor(aPerformance, aPlay),
+                volumeCreditsFor(aPerformance, aPlay)
         );
     }
 
@@ -34,6 +35,14 @@ public class StatementFactory {
                 break;
             default:
                 throw new IllegalArgumentException("알 수 없는 장르: " + aPlay.type());
+        }
+        return result;
+    }
+
+    private int volumeCreditsFor(final Performance aPerformance, final Play aPlay) {
+        var result = Math.max(aPerformance.audience() - 30, 0);
+        if ("comedy".equals(aPlay.type())) {
+            result += aPerformance.audience() / 5;
         }
         return result;
     }
