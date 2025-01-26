@@ -25,9 +25,8 @@ public class Statement {
                     ))
                     .append(LF);
         }
-        var totalAmount = totalAmount(invoice, plays);
 
-        result.append(String.format("총액: %s원", usd(totalAmount))).append(LF);
+        result.append(String.format("총액: %s원", usd(totalAmount(invoice, plays)))).append(LF);
         result.append(String.format("적립 포인트: %d점", totalVolumeCredits(invoice, plays))).append(LF);
 
         return result.toString();
