@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-import me.junpak.refactoring.chapter1.current.model.calculator.PerformanceCalculatorImpl;
+import me.junpak.refactoring.chapter1.current.model.calculator.PerformanceCalculatorComposite;
 import me.junpak.refactoring.chapter1.current.model.data.EnrichPerformance;
 import me.junpak.refactoring.chapter1.current.model.data.Invoice;
 import me.junpak.refactoring.chapter1.current.model.data.Performance;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 class PerformanceCalculatorTest {
 
-    private final PerformanceCalculator sut = new PerformanceCalculatorImpl();
+    private final PerformanceCalculator sut = new PerformanceCalculatorComposite();
 
     private Map<String, Play> plays;
     private Invoice invoice;

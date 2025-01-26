@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import me.junpak.refactoring.chapter1.current.model.StatementFactory;
-import me.junpak.refactoring.chapter1.current.model.calculator.PerformanceCalculatorImpl;
+import me.junpak.refactoring.chapter1.current.model.calculator.PerformanceCalculatorComposite;
 import me.junpak.refactoring.chapter1.current.model.data.Invoice;
 import me.junpak.refactoring.chapter1.current.model.data.Play;
 import me.junpak.refactoring.chapter1.current.view.OutputView;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 class StatementControllerTest {
 
     private final StatementController sut = new StatementController(
-            new StatementFactory(new PerformanceCalculatorImpl()),
+            new StatementFactory(new PerformanceCalculatorComposite()),
             new OutputView()
     );
 

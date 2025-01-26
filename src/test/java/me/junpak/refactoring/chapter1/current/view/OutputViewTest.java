@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import me.junpak.refactoring.chapter1.current.model.StatementFactory;
-import me.junpak.refactoring.chapter1.current.model.calculator.PerformanceCalculatorImpl;
+import me.junpak.refactoring.chapter1.current.model.calculator.PerformanceCalculatorComposite;
 import me.junpak.refactoring.chapter1.current.model.data.Invoice;
 import me.junpak.refactoring.chapter1.current.model.data.Play;
 import me.junpak.refactoring.chapter1.current.model.data.Statement;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 class OutputViewTest {
 
     private final OutputView sut = new OutputView();
-    private final StatementFactory factory = new StatementFactory(new PerformanceCalculatorImpl());
+    private final StatementFactory factory = new StatementFactory(new PerformanceCalculatorComposite());
 
     private Map<String, Play> plays;
     private List<Invoice> invoices;
