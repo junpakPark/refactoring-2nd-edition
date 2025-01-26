@@ -27,20 +27,20 @@ public class Statement {
             result.append(String.format(
                             "  %s: %s원 (%d석)",
                             plays.get(perf.playID()).name(),
-                            format(amountFor(perf, plays.get(perf.playID())) / 100.0),
+                            usd(amountFor(perf, plays.get(perf.playID())) / 100.0),
                             perf.audience()
                     ))
                     .append(LF);
             totalAmount += amountFor(perf, plays.get(perf.playID()));
         }
 
-        result.append(String.format("총액: %s원", format(totalAmount / 100.0))).append(LF);
+        result.append(String.format("총액: %s원", usd(totalAmount / 100.0))).append(LF);
         result.append(String.format("적립 포인트: %d점", volumeCredits)).append(LF);
 
         return result.toString();
     }
 
-    private String format(double amount) {
+    private String usd(double amount) {
         return US_CURRENCY_FORMAT.format(amount);
     }
 
