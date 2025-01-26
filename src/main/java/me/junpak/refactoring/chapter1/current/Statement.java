@@ -25,15 +25,20 @@ public class Statement {
                     ))
                     .append(LF);
         }
-        var totalAmount = 0;
-        for (var perf : invoice.performances()) {
-            totalAmount += amountFor(perf, plays.get(perf.playID()));
-        }
+        var totalAmount = totalAmount(invoice, plays);
 
         result.append(String.format("총액: %s원", usd(totalAmount))).append(LF);
         result.append(String.format("적립 포인트: %d점", totalVolumeCredits(invoice, plays))).append(LF);
 
         return result.toString();
+    }
+
+    private int totalAmount(final Invoice invoice, final Map<String, Play> plays) {
+        var totalAmount = 0;
+        for (var perf : invoice.performances()) {
+            totalAmount += amountFor(perf, plays.get(perf.playID()));
+        }
+        return totalAmount;
     }
 
     private int totalVolumeCredits(final Invoice invoice, final Map<String, Play> plays) {
