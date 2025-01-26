@@ -1,12 +1,12 @@
-package me.junpak.refactoring.chapter1.current;
+package me.junpak.refactoring.chapter1.current.model;
 
 import java.util.List;
 import java.util.Map;
-import me.junpak.refactoring.chapter1.current.data.EnrichPerformance;
-import me.junpak.refactoring.chapter1.current.data.Invoice;
-import me.junpak.refactoring.chapter1.current.data.Performance;
-import me.junpak.refactoring.chapter1.current.data.Play;
-import me.junpak.refactoring.chapter1.current.data.Statement;
+import me.junpak.refactoring.chapter1.current.model.data.EnrichPerformance;
+import me.junpak.refactoring.chapter1.current.model.data.Invoice;
+import me.junpak.refactoring.chapter1.current.model.data.Performance;
+import me.junpak.refactoring.chapter1.current.model.data.Play;
+import me.junpak.refactoring.chapter1.current.model.data.Statement;
 
 public class StatementFactory {
 

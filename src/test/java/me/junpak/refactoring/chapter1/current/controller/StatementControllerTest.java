@@ -1,4 +1,4 @@
-package me.junpak.refactoring.chapter1.current;
+package me.junpak.refactoring.chapter1.current.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -7,8 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-import me.junpak.refactoring.chapter1.current.data.Invoice;
-import me.junpak.refactoring.chapter1.current.data.Play;
+import me.junpak.refactoring.chapter1.current.model.StatementFactory;
+import me.junpak.refactoring.chapter1.current.model.data.Invoice;
+import me.junpak.refactoring.chapter1.current.model.data.Play;
 import me.junpak.refactoring.chapter1.current.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -81,6 +82,5 @@ class StatementControllerTest {
         // then
         assertThat(result).isEqualTo(expected);
     }
-
 
 }

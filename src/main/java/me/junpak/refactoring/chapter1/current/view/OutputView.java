@@ -2,7 +2,7 @@ package me.junpak.refactoring.chapter1.current.view;
 
 import java.text.NumberFormat;
 import java.util.Locale;
-import me.junpak.refactoring.chapter1.current.data.Statement;
+import me.junpak.refactoring.chapter1.current.model.data.Statement;
 
 public class OutputView {
 
