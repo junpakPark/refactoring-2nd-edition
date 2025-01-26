@@ -14,6 +14,12 @@ public class Statement {
     public static final String LF = System.lineSeparator();
     public static final NumberFormat US_CURRENCY_FORMAT = NumberFormat.getCurrencyInstance(Locale.US);
 
+    private final StatementFactory factory;
+
+    public Statement(final StatementFactory statementFactory) {
+        this.factory = statementFactory;
+    }
+
     public String statement(Invoice invoice, Map<String, Play> plays) {
         final StatementData data = new StatementData(invoice.customer(), invoice.performances());
         return renderPlainText(data, plays);

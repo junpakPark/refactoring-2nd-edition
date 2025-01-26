@@ -41,7 +41,7 @@ class StatementTest {
     @Test
     void statement() {
         // given
-        final Statement statement = new Statement();
+        final Statement statement = new Statement(new StatementFactory());
         final Invoice invoice = invoices.get(0);
         final String expected = """
                 청구 내역 (고객명: BigCo)
