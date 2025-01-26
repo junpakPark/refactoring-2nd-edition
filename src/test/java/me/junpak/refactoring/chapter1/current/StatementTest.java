@@ -7,9 +7,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-import me.junpak.refactoring.chapter1.before.Statement;
-import me.junpak.refactoring.chapter1.before.data.Invoice;
-import me.junpak.refactoring.chapter1.before.data.Play;
+import me.junpak.refactoring.chapter1.current.data.Invoice;
+import me.junpak.refactoring.chapter1.current.data.Play;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +41,7 @@ class StatementTest {
     @Test
     void statement() {
         // given
-        final me.junpak.refactoring.chapter1.before.Statement statement = new Statement();
+        final Statement statement = new Statement();
         final Invoice invoice = invoices.get(0);
         final String expected = """
                 청구 내역 (고객명: BigCo)
