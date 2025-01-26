@@ -49,14 +49,16 @@ class StatementFactoryTest {
     void enrichPerformance() {
         // given
         final Performance performance = invoice.performances().get(0);
+        final Play play = plays.get(performance.playID());
 
         // when
-        final EnrichPerformance actual = sut.enrichPerformance(performance);
+        final EnrichPerformance actual = sut.enrichPerformance(performance, play);
 
         // then
         SoftAssertions.assertSoftly(softly -> {
             assertThat(actual.playID()).isEqualTo(performance.playID());
             assertThat(actual.audience()).isEqualTo(performance.audience());
+            assertThat(actual.play()).isEqualTo(play);
         });
     }
 
