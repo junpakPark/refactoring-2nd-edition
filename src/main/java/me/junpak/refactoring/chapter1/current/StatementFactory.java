@@ -17,8 +17,26 @@ public class StatementFactory {
 
         return new StatementData(
                 invoice.customer(),
-                enrichPerformances
+                enrichPerformances,
+                totalAmount(enrichPerformances),
+                totalVolumeCredits(enrichPerformances)
         );
+    }
+
+    private int totalAmount(final List<EnrichPerformance> performances) {
+        var result = 0;
+        for (var perf : performances) {
+            result += perf.amount();
+        }
+        return result;
+    }
+
+    private int totalVolumeCredits(final List<EnrichPerformance> performances) {
+        var result = 0;
+        for (var perf : performances) {
+            result += perf.volumeCredits();
+        }
+        return result;
     }
 
     public EnrichPerformance enrichPerformance(final Performance aPerformance, final Play aPlay) {

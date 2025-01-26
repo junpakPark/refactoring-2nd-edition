@@ -55,8 +55,8 @@ class StatementFactoryTest {
         SoftAssertions.assertSoftly(softly -> {
             assertThat(actual.customer()).isEqualTo(invoice.customer());
             assertThat(actual.performances()).hasSize(invoice.performances().size());
-            assertThat(actual.performances().get(0).amount()).isEqualTo(65000);
-            assertThat(actual.performances().get(0).volumeCredits()).isEqualTo(25);
+            assertThat(actual.totalAmount()).isEqualTo(173000);
+            assertThat(actual.totalVolumeCredits()).isEqualTo(47);
         });
     }
 
