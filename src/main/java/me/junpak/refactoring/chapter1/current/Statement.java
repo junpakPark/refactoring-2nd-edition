@@ -6,6 +6,7 @@ import java.util.Map;
 import me.junpak.refactoring.chapter1.current.data.Invoice;
 import me.junpak.refactoring.chapter1.current.data.Play;
 import me.junpak.refactoring.chapter1.current.data.StatementData;
+import me.junpak.refactoring.chapter1.current.view.OutputView;
 
 
 public class Statement {
@@ -14,9 +15,11 @@ public class Statement {
     public static final NumberFormat US_CURRENCY_FORMAT = NumberFormat.getCurrencyInstance(Locale.US);
 
     private final StatementFactory factory;
+    private final OutputView view;
 
-    public Statement(final StatementFactory statementFactory) {
+    public Statement(final StatementFactory statementFactory, final OutputView outputView) {
         this.factory = statementFactory;
+        this.view = outputView;
     }
 
     public String statement(Invoice invoice, Map<String, Play> plays) {

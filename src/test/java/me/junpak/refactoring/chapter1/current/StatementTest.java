@@ -9,12 +9,13 @@ import java.util.List;
 import java.util.Map;
 import me.junpak.refactoring.chapter1.current.data.Invoice;
 import me.junpak.refactoring.chapter1.current.data.Play;
+import me.junpak.refactoring.chapter1.current.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class StatementTest {
 
-    private final Statement sut = new Statement(new StatementFactory());
+    private final Statement sut = new Statement(new StatementFactory(), new OutputView());
 
     private Map<String, Play> plays;
     private List<Invoice> invoices;
