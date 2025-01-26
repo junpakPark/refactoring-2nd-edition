@@ -15,7 +15,6 @@ public class Statement {
 
     public String statement(Invoice invoice, Map<String, Play> plays) {
         var totalAmount = 0;
-        var volumeCredits = 0;
         var result = new StringBuilder("청구 내역 (고객명: " + invoice.customer() + ")").append(LF);
 
         for (var perf : invoice.performances()) {
@@ -29,6 +28,7 @@ public class Statement {
                     .append(LF);
             totalAmount += amountFor(perf, plays.get(perf.playID()));
         }
+        var volumeCredits = 0;
         for (var perf : invoice.performances()) {
             volumeCredits += volumeCreditsFor(plays, perf);
         }
