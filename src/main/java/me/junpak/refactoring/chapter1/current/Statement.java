@@ -15,14 +15,14 @@ public class Statement {
     public static final NumberFormat US_CURRENCY_FORMAT = NumberFormat.getCurrencyInstance(Locale.US);
 
     public String statement(Invoice invoice, Map<String, Play> plays) {
-        final StatementData data = new StatementData(invoice.customer());
+        final StatementData data = new StatementData(invoice.customer(), invoice.performances());
         return renderPlainText(data, invoice, plays);
     }
 
     private String renderPlainText(final StatementData data, final Invoice invoice, final Map<String, Play> plays) {
         var result = new StringBuilder("청구 내역 (고객명: " + data.customer() + ")").append(LF);
 
-        for (var perf : invoice.performances()) {
+        for (var perf : data.performances()) {
             result.append(String.format(
                             "  %s: %s원 (%d석)",
                             plays.get(perf.playID()).name(),
@@ -32,23 +32,23 @@ public class Statement {
                     .append(LF);
         }
 
-        result.append(String.format("총액: %s원", usd(totalAmount(invoice, plays)))).append(LF);
-        result.append(String.format("적립 포인트: %d점", totalVolumeCredits(invoice, plays))).append(LF);
+        result.append(String.format("총액: %s원", usd(totalAmount(data, plays)))).append(LF);
+        result.append(String.format("적립 포인트: %d점", totalVolumeCredits(data, plays))).append(LF);
 
         return result.toString();
     }
 
-    private int totalAmount(final Invoice invoice, final Map<String, Play> plays) {
+    private int totalAmount(final StatementData data, final Map<String, Play> plays) {
         var result = 0;
-        for (var perf : invoice.performances()) {
+        for (var perf : data.performances()) {
             result += amountFor(perf, plays.get(perf.playID()));
         }
         return result;
     }
 
-    private int totalVolumeCredits(final Invoice invoice, final Map<String, Play> plays) {
+    private int totalVolumeCredits(final StatementData data, final Map<String, Play> plays) {
         var result = 0;
-        for (var perf : invoice.performances()) {
+        for (var perf : data.performances()) {
             result += volumeCreditsFor(plays, perf);
         }
         return result;
