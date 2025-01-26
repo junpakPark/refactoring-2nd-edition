@@ -9,10 +9,12 @@ import me.junpak.refactoring.chapter1.current.data.Play;
 
 public class Statement {
 
+    public static final String LF = System.lineSeparator();
+
     public String statement(Invoice invoice, Map<String, Play> plays) {
         var totalAmount = 0;
         var volumeCredits = 0;
-        var result = new StringBuilder("청구 내역 (고객명: " + invoice.customer() + ")\n");
+        var result = new StringBuilder("청구 내역 (고객명: " + invoice.customer() + ")").append(LF);
         final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
         for (var perf : invoice.performances()) {
@@ -41,23 +43,18 @@ public class Statement {
             volumeCredits += Math.max(perf.audience() - 30, 0);
             // 희극 관객 5명마다 추가 포인트를 제공한다.
             if ("comedy".equals(play.type())) {
-                volumeCredits += Math.floor(perf.audience() / 5);
+                volumeCredits += perf.audience() / 5;
             }
 
             // 청구 내역을 출력한다.
             result.append(
-                    String.format(
-                            "  %s: %s원 (%d석)\n",
-                            play.name(),
-                            format.format(thisAmount / 100.0),
-                            perf.audience()
-                    )
-            );
+                            String.format("  %s: %s원 (%d석)", play.name(), format.format(thisAmount / 100.0), perf.audience()))
+                    .append(LF);
             totalAmount += thisAmount;
         }
 
-        result.append(String.format("총액: %s원\n", format.format(totalAmount / 100.0)));
-        result.append(String.format("적립 포인트: %d점\n", volumeCredits));
+        result.append(String.format("총액: %s원", format.format(totalAmount / 100.0))).append(LF);
+        result.append(String.format("적립 포인트: %d점", volumeCredits)).append(LF);
 
         return result.toString();
     }
