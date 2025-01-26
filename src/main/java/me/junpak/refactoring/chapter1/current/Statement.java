@@ -18,7 +18,6 @@ public class Statement {
         var result = new StringBuilder("청구 내역 (고객명: " + invoice.customer() + ")").append(LF);
 
         for (var perf : invoice.performances()) {
-            // 청구 내역을 출력한다.
             result.append(String.format(
                             "  %s: %s원 (%d석)",
                             plays.get(perf.playID()).name(),
@@ -26,6 +25,8 @@ public class Statement {
                             perf.audience()
                     ))
                     .append(LF);
+        }
+        for (var perf : invoice.performances()) {
             totalAmount += amountFor(perf, plays.get(perf.playID()));
         }
 
