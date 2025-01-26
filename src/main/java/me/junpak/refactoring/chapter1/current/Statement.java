@@ -6,6 +6,7 @@ import java.util.Map;
 import me.junpak.refactoring.chapter1.current.data.Invoice;
 import me.junpak.refactoring.chapter1.current.data.Performance;
 import me.junpak.refactoring.chapter1.current.data.Play;
+import me.junpak.refactoring.chapter1.current.data.StatementData;
 
 
 public class Statement {
@@ -14,6 +15,7 @@ public class Statement {
     public static final NumberFormat US_CURRENCY_FORMAT = NumberFormat.getCurrencyInstance(Locale.US);
 
     public String statement(Invoice invoice, Map<String, Play> plays) {
+        final StatementData data = new StatementData();
         return renderPlainText(invoice, plays);
     }
 
