@@ -28,15 +28,20 @@ public class Statement {
                     .append(LF);
             totalAmount += amountFor(perf, plays.get(perf.playID()));
         }
-        var volumeCredits = 0;
-        for (var perf : invoice.performances()) {
-            volumeCredits += volumeCreditsFor(plays, perf);
-        }
+        var volumeCredits = totalVolumeCredits(invoice, plays);
 
         result.append(String.format("총액: %s원", usd(totalAmount))).append(LF);
         result.append(String.format("적립 포인트: %d점", volumeCredits)).append(LF);
 
         return result.toString();
+    }
+
+    private int totalVolumeCredits(final Invoice invoice, final Map<String, Play> plays) {
+        var volumeCredits = 0;
+        for (var perf : invoice.performances()) {
+            volumeCredits += volumeCreditsFor(plays, perf);
+        }
+        return volumeCredits;
     }
 
     private String usd(final int amount) {
