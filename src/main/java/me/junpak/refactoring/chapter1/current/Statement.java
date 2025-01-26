@@ -3,7 +3,6 @@ package me.junpak.refactoring.chapter1.current;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
-import me.junpak.refactoring.chapter1.current.data.EnrichPerformance;
 import me.junpak.refactoring.chapter1.current.data.Invoice;
 import me.junpak.refactoring.chapter1.current.data.Performance;
 import me.junpak.refactoring.chapter1.current.data.Play;
@@ -18,10 +17,6 @@ public class Statement {
     public String statement(Invoice invoice, Map<String, Play> plays) {
         final StatementData data = new StatementData(invoice.customer(), invoice.performances());
         return renderPlainText(data, plays);
-    }
-
-    private EnrichPerformance enrichPerformance(final Performance aPerformance) {
-        return new EnrichPerformance(aPerformance.playID(), aPerformance.audience());
     }
 
     private String renderPlainText(final StatementData data, final Map<String, Play> plays) {
