@@ -4,6 +4,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
 import me.junpak.refactoring.chapter1.current.data.Invoice;
+import me.junpak.refactoring.chapter1.current.data.Performance;
 import me.junpak.refactoring.chapter1.current.data.Play;
 
 
@@ -19,25 +20,7 @@ public class Statement {
 
         for (var perf : invoice.performances()) {
             final Play play = plays.get(perf.playID());
-            var thisAmount = 0;
-
-            switch (play.type()) {
-                case "tragedy":
-                    thisAmount = 40000;
-                    if (perf.audience() > 30) {
-                        thisAmount += 1000 * (perf.audience() - 30);
-                    }
-                    break;
-                case "comedy":
-                    thisAmount = 30000;
-                    if (perf.audience() > 20) {
-                        thisAmount += 10000 + 500 * (perf.audience() - 20);
-                    }
-                    thisAmount += 300 * perf.audience();
-                    break;
-                default:
-                    throw new IllegalArgumentException("알 수 없는 장르: " + play.type());
-            }
+            var thisAmount = amountFor(perf, play);
 
             // 포인트를 적립한다.
             volumeCredits += Math.max(perf.audience() - 30, 0);
@@ -57,6 +40,29 @@ public class Statement {
         result.append(String.format("적립 포인트: %d점", volumeCredits)).append(LF);
 
         return result.toString();
+    }
+
+    private int amountFor(final Performance perf, final Play play) {
+        var thisAmount = 0;
+
+        switch (play.type()) {
+            case "tragedy":
+                thisAmount = 40000;
+                if (perf.audience() > 30) {
+                    thisAmount += 1000 * (perf.audience() - 30);
+                }
+                break;
+            case "comedy":
+                thisAmount = 30000;
+                if (perf.audience() > 20) {
+                    thisAmount += 10000 + 500 * (perf.audience() - 20);
+                }
+                thisAmount += 300 * perf.audience();
+                break;
+            default:
+                throw new IllegalArgumentException("알 수 없는 장르: " + play.type());
+        }
+        return thisAmount;
     }
 
 }
