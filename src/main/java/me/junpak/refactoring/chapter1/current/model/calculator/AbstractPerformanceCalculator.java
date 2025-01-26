@@ -10,7 +10,6 @@ public abstract class AbstractPerformanceCalculator implements PerformanceCalcul
     @Override
     public final EnrichPerformance enrichPerformance(final Performance aPerformance, final Play aPlay) {
         return new EnrichPerformance(
-                aPerformance.playID(),
                 aPerformance.audience(),
                 aPlay,
                 amountFor(aPerformance, aPlay),
