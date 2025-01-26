@@ -20,8 +20,7 @@ public class Statement {
     }
 
     public String statement(Invoice invoice, Map<String, Play> plays) {
-        final StatementData data = factory.createStatementData(invoice, plays);
-        return renderPlainText(data);
+        return renderPlainText(factory.createStatementData(invoice, plays));
     }
 
     private String renderPlainText(final StatementData data) {
