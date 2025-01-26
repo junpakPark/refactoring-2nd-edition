@@ -19,19 +19,22 @@ public class Statement {
         final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
         for (var perf : invoice.performances()) {
-            final Play play = plays.get(perf.playID());
-            var thisAmount = amountFor(perf, play);
+            var thisAmount = amountFor(perf, plays.get(perf.playID()));
 
             // 포인트를 적립한다.
             volumeCredits += Math.max(perf.audience() - 30, 0);
             // 희극 관객 5명마다 추가 포인트를 제공한다.
-            if ("comedy".equals(play.type())) {
+            if ("comedy".equals(plays.get(perf.playID()).type())) {
                 volumeCredits += perf.audience() / 5;
             }
 
             // 청구 내역을 출력한다.
-            result.append(
-                            String.format("  %s: %s원 (%d석)", play.name(), format.format(thisAmount / 100.0), perf.audience()))
+            result.append(String.format(
+                            "  %s: %s원 (%d석)",
+                            plays.get(perf.playID()).name(),
+                            format.format(thisAmount / 100.0),
+                            perf.audience()
+                    ))
                     .append(LF);
             totalAmount += thisAmount;
         }
