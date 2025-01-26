@@ -40,10 +40,10 @@ public class Statement {
         return result.toString();
     }
 
-    private int volumeCreditsFor(final Map<String, Play> plays, final Performance perf) {
-        var volumeCredits = Math.max(perf.audience() - 30, 0);
-        if ("comedy".equals(plays.get(perf.playID()).type())) {
-            volumeCredits += perf.audience() / 5;
+    private int volumeCreditsFor(final Map<String, Play> plays, final Performance aPerformance) {
+        var volumeCredits = Math.max(aPerformance.audience() - 30, 0);
+        if ("comedy".equals(plays.get(aPerformance.playID()).type())) {
+            volumeCredits += aPerformance.audience() / 5;
         }
         return volumeCredits;
     }
