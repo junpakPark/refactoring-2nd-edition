@@ -21,11 +21,7 @@ public class Statement {
         for (var perf : invoice.performances()) {
 
             // 포인트를 적립한다.
-            volumeCredits += Math.max(perf.audience() - 30, 0);
-            // 희극 관객 5명마다 추가 포인트를 제공한다.
-            if ("comedy".equals(plays.get(perf.playID()).type())) {
-                volumeCredits += perf.audience() / 5;
-            }
+            volumeCredits += volumeCreditsFor(plays, perf);
 
             // 청구 내역을 출력한다.
             result.append(String.format(
@@ -42,6 +38,14 @@ public class Statement {
         result.append(String.format("적립 포인트: %d점", volumeCredits)).append(LF);
 
         return result.toString();
+    }
+
+    private int volumeCreditsFor(final Map<String, Play> plays, final Performance perf) {
+        var volumeCredits = Math.max(perf.audience() - 30, 0);
+        if ("comedy".equals(plays.get(perf.playID()).type())) {
+            volumeCredits += perf.audience() / 5;
+        }
+        return volumeCredits;
     }
 
     private int amountFor(final Performance aPerformance, final Play aPlay) {
