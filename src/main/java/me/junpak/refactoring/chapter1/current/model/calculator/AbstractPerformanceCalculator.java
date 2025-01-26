@@ -8,7 +8,7 @@ import me.junpak.refactoring.chapter1.current.model.data.Play;
 public abstract class AbstractPerformanceCalculator implements PerformanceCalculator {
 
     @Override
-    public EnrichPerformance enrichPerformance(final Performance aPerformance, final Play aPlay) {
+    public final EnrichPerformance enrichPerformance(final Performance aPerformance, final Play aPlay) {
         return new EnrichPerformance(
                 aPerformance.playID(),
                 aPerformance.audience(),
