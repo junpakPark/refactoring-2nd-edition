@@ -8,23 +8,23 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import me.junpak.refactoring.chapter1.current.model.calculator.PerformanceCalculatorImpl;
+import me.junpak.refactoring.chapter1.current.model.data.EnrichPerformance;
 import me.junpak.refactoring.chapter1.current.model.data.Invoice;
+import me.junpak.refactoring.chapter1.current.model.data.Performance;
 import me.junpak.refactoring.chapter1.current.model.data.Play;
-import me.junpak.refactoring.chapter1.current.model.data.Statement;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class StatementFactoryTest {
+class PerformanceCalculatorTest {
 
-    private StatementFactory sut;
+    private final PerformanceCalculator sut = new PerformanceCalculatorImpl();
+
     private Map<String, Play> plays;
     private Invoice invoice;
 
     @BeforeEach
     void setUp() throws Exception {
-        sut = new StatementFactory(new PerformanceCalculatorImpl());
-
         final ClassLoader classLoader = getClass().getClassLoader();
         final ObjectMapper mapper = new ObjectMapper();
 
@@ -46,18 +46,21 @@ class StatementFactoryTest {
     }
 
     @Test
-    void createStatement() {
+    void enrichPerformance() {
+        // given
+        final Performance performance = invoice.performances().get(0);
+        final Play play = plays.get(performance.playID());
+
         // when
-        final Statement actual = sut.createStatement(invoice, plays);
+        final EnrichPerformance actual = sut.enrichPerformance(performance, play);
 
         // then
         SoftAssertions.assertSoftly(softly -> {
-            assertThat(actual.customer()).isEqualTo(invoice.customer());
-            assertThat(actual.performances()).hasSize(invoice.performances().size());
-            assertThat(actual.totalAmount()).isEqualTo(173000);
-            assertThat(actual.totalVolumeCredits()).isEqualTo(47);
+            assertThat(actual.playID()).isEqualTo(performance.playID());
+            assertThat(actual.audience()).isEqualTo(performance.audience());
+            assertThat(actual.play()).isEqualTo(play);
+            assertThat(actual.amount()).isEqualTo(65000);
+            assertThat(actual.volumeCredits()).isEqualTo(25);
         });
     }
-
-
 }
