@@ -19,7 +19,6 @@ public class Statement {
         final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
         for (var perf : invoice.performances()) {
-            var thisAmount = amountFor(perf, plays.get(perf.playID()));
 
             // 포인트를 적립한다.
             volumeCredits += Math.max(perf.audience() - 30, 0);
@@ -32,11 +31,11 @@ public class Statement {
             result.append(String.format(
                             "  %s: %s원 (%d석)",
                             plays.get(perf.playID()).name(),
-                            format.format(thisAmount / 100.0),
+                            format.format(amountFor(perf, plays.get(perf.playID())) / 100.0),
                             perf.audience()
                     ))
                     .append(LF);
-            totalAmount += thisAmount;
+            totalAmount += amountFor(perf, plays.get(perf.playID()));
         }
 
         result.append(String.format("총액: %s원", format.format(totalAmount / 100.0))).append(LF);
