@@ -18,24 +18,7 @@ public abstract class AbstractPerformanceCalculator implements PerformanceCalcul
         );
     }
 
-    protected int amountFor(final Performance aPerformance, final Play aPlay) {
-        var result = 0;
-
-        switch (aPlay.type()) {
-            case "tragedy":
-                throw new IllegalStateException("오류 발생");
-            case "comedy":
-                result = 30000;
-                if (aPerformance.audience() > 20) {
-                    result += 10000 + 500 * (aPerformance.audience() - 20);
-                }
-                result += 300 * aPerformance.audience();
-                break;
-            default:
-                throw new IllegalArgumentException("알 수 없는 장르: " + aPlay.type());
-        }
-        return result;
-    }
+    protected abstract int amountFor(final Performance aPerformance, final Play aPlay);
 
     private int volumeCreditsFor(final Performance aPerformance, final Play aPlay) {
         var result = Math.max(aPerformance.audience() - 30, 0);
