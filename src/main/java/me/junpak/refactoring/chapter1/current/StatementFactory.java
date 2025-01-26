@@ -1,10 +1,22 @@
 package me.junpak.refactoring.chapter1.current;
 
+import java.util.Map;
 import me.junpak.refactoring.chapter1.current.data.EnrichPerformance;
+import me.junpak.refactoring.chapter1.current.data.Invoice;
 import me.junpak.refactoring.chapter1.current.data.Performance;
 import me.junpak.refactoring.chapter1.current.data.Play;
+import me.junpak.refactoring.chapter1.current.data.StatementData;
 
 public class StatementFactory {
+
+    public StatementData createStatementData(final Invoice invoice, final Map<String, Play> plays) {
+        return new StatementData(
+                invoice.customer(),
+                invoice.performances().stream()
+                        .map(performance -> enrichPerformance(performance, plays.get(performance.playID())))
+                        .toList()
+        );
+    }
 
     public EnrichPerformance enrichPerformance(final Performance aPerformance, final Play aPlay) {
         return new EnrichPerformance(

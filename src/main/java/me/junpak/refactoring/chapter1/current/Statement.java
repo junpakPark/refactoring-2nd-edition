@@ -20,17 +20,8 @@ public class Statement {
     }
 
     public String statement(Invoice invoice, Map<String, Play> plays) {
-        final StatementData data = createStatementData(invoice, plays);
+        final StatementData data = factory.createStatementData(invoice, plays);
         return renderPlainText(data);
-    }
-
-    private StatementData createStatementData(final Invoice invoice, final Map<String, Play> plays) {
-        return new StatementData(
-                invoice.customer(),
-                invoice.performances().stream()
-                        .map(performance -> factory.enrichPerformance(performance, plays.get(performance.playID())))
-                        .toList()
-        );
     }
 
     private String renderPlainText(final StatementData data) {
