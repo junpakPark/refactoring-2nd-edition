@@ -1,5 +1,6 @@
 package me.junpak.refactoring.chapter1.current;
 
+import java.util.List;
 import java.util.Map;
 import me.junpak.refactoring.chapter1.current.data.EnrichPerformance;
 import me.junpak.refactoring.chapter1.current.data.Invoice;
@@ -10,11 +11,13 @@ import me.junpak.refactoring.chapter1.current.data.StatementData;
 public class StatementFactory {
 
     public StatementData createStatementData(final Invoice invoice, final Map<String, Play> plays) {
+        final List<EnrichPerformance> enrichPerformances = invoice.performances().stream()
+                .map(performance -> enrichPerformance(performance, plays.get(performance.playID())))
+                .toList();
+
         return new StatementData(
                 invoice.customer(),
-                invoice.performances().stream()
-                        .map(performance -> enrichPerformance(performance, plays.get(performance.playID())))
-                        .toList()
+                enrichPerformances
         );
     }
 
