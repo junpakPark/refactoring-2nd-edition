@@ -33,19 +33,19 @@ public class Statement {
     }
 
     private int totalAmount(final Invoice invoice, final Map<String, Play> plays) {
-        var totalAmount = 0;
+        var result = 0;
         for (var perf : invoice.performances()) {
-            totalAmount += amountFor(perf, plays.get(perf.playID()));
+            result += amountFor(perf, plays.get(perf.playID()));
         }
-        return totalAmount;
+        return result;
     }
 
     private int totalVolumeCredits(final Invoice invoice, final Map<String, Play> plays) {
-        var volumeCredits = 0;
+        var result = 0;
         for (var perf : invoice.performances()) {
-            volumeCredits += volumeCreditsFor(plays, perf);
+            result += volumeCreditsFor(plays, perf);
         }
-        return volumeCredits;
+        return result;
     }
 
     private String usd(final int amount) {
