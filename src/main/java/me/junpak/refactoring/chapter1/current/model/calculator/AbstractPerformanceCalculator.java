@@ -14,18 +14,14 @@ public abstract class AbstractPerformanceCalculator implements PerformanceCalcul
                 aPerformance.audience(),
                 aPlay,
                 amountFor(aPerformance, aPlay),
-                volumeCreditsFor(aPerformance, aPlay)
+                volumeCreditsFor(aPerformance)
         );
     }
 
     protected abstract int amountFor(final Performance aPerformance, final Play aPlay);
 
-    private int volumeCreditsFor(final Performance aPerformance, final Play aPlay) {
-        var result = Math.max(aPerformance.audience() - 30, 0);
-        if ("comedy".equals(aPlay.type())) {
-            result += aPerformance.audience() / 5;
-        }
-        return result;
+    protected int volumeCreditsFor(final Performance aPerformance) {
+        return Math.max(aPerformance.audience() - 30, 0);
     }
 
 }

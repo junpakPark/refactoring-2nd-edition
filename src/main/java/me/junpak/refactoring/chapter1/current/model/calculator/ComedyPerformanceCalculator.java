@@ -16,4 +16,9 @@ public class ComedyPerformanceCalculator extends AbstractPerformanceCalculator {
         return result;
     }
 
+    @Override
+    protected int volumeCreditsFor(final Performance aPerformance) {
+        return super.volumeCreditsFor(aPerformance) + aPerformance.audience() / 5;
+    }
+
 }
