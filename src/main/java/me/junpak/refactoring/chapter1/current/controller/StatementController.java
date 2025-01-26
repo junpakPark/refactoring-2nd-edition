@@ -9,7 +9,6 @@ import me.junpak.refactoring.chapter1.current.view.OutputView;
 
 public class StatementController {
 
-
     private final StatementFactory factory;
     private final OutputView view;
 
