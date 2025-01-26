@@ -18,16 +18,12 @@ public abstract class AbstractPerformanceCalculator implements PerformanceCalcul
         );
     }
 
-    private int amountFor(final Performance aPerformance, final Play aPlay) {
+    protected int amountFor(final Performance aPerformance, final Play aPlay) {
         var result = 0;
 
         switch (aPlay.type()) {
             case "tragedy":
-                result = 40000;
-                if (aPerformance.audience() > 30) {
-                    result += 1000 * (aPerformance.audience() - 30);
-                }
-                break;
+                throw new IllegalStateException("오류 발생");
             case "comedy":
                 result = 30000;
                 if (aPerformance.audience() > 20) {
