@@ -2,47 +2,25 @@ package me.junpak.refactoring.chapter1.before;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
+import me.junpak.refactoring.chapter1.Ch01Test;
 import me.junpak.refactoring.chapter1.data.Invoice;
-import me.junpak.refactoring.chapter1.data.Play;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class StatementTest {
+class StatementTest extends Ch01Test {
 
-    private Map<String, Play> plays;
-    private List<Invoice> invoices;
+    private Statement sut;
+    private Invoice invoice;
 
     @BeforeEach
-    void setUp() throws Exception {
-        final ClassLoader classLoader = getClass().getClassLoader();
-        final ObjectMapper mapper = new ObjectMapper();
-
-        try (
-                final InputStream playsStream = classLoader.getResourceAsStream("chapter1/plays.json");
-                final InputStream invoicesStream = classLoader.getResourceAsStream("chapter1/invoices.json");
-        ) {
-
-            if (playsStream == null || invoicesStream == null) {
-                throw new IllegalStateException("테스트 리소스가 없습니다!");
-            }
-
-            this.plays = mapper.readValue(playsStream, new TypeReference<>() {
-            });
-            this.invoices = mapper.readValue(invoicesStream, new TypeReference<>() {
-            });
-        }
+    void setUp() {
+        sut = new Statement();
+        invoice = invoices.get(0);
     }
 
     @Test
     void statement() {
         // given
-        final Statement statement = new Statement();
-        final Invoice invoice = invoices.get(0);
         final String expected = """
                 청구 내역 (고객명: BigCo)
                   Hamlet: $650.00원 (55석)
@@ -53,7 +31,7 @@ class StatementTest {
                 """;
 
         // when
-        final String result = statement.statement(invoice, plays);
+        final String result = sut.statement(invoice, plays);
 
         // then
         assertThat(result).isEqualTo(expected);

@@ -2,54 +2,33 @@ package me.junpak.refactoring.chapter1.current.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
+import me.junpak.refactoring.chapter1.Ch01Test;
+import me.junpak.refactoring.chapter1.current.model.PerformanceCalculator;
 import me.junpak.refactoring.chapter1.current.model.StatementFactory;
 import me.junpak.refactoring.chapter1.current.model.calculator.PerformanceCalculatorComposite;
 import me.junpak.refactoring.chapter1.current.view.OutputView;
 import me.junpak.refactoring.chapter1.data.Invoice;
-import me.junpak.refactoring.chapter1.data.Play;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class StatementControllerTest {
+class StatementControllerTest extends Ch01Test {
 
-    private final StatementController sut = new StatementController(
-            new StatementFactory(new PerformanceCalculatorComposite()),
-            new OutputView()
-    );
-
-    private Map<String, Play> plays;
-    private List<Invoice> invoices;
+    private StatementController sut;
+    private Invoice invoice;
 
     @BeforeEach
-    void setUp() throws Exception {
-        final ClassLoader classLoader = getClass().getClassLoader();
-        final ObjectMapper mapper = new ObjectMapper();
+    void setUp() {
+        final PerformanceCalculator calculator = new PerformanceCalculatorComposite();
+        final StatementFactory factory = new StatementFactory(calculator);
+        final OutputView view = new OutputView();
 
-        try (
-                final InputStream playsStream = classLoader.getResourceAsStream("chapter1/plays.json");
-                final InputStream invoicesStream = classLoader.getResourceAsStream("chapter1/invoices.json");
-        ) {
-
-            if (playsStream == null || invoicesStream == null) {
-                throw new IllegalStateException("테스트 리소스가 없습니다!");
-            }
-
-            this.plays = mapper.readValue(playsStream, new TypeReference<>() {
-            });
-            this.invoices = mapper.readValue(invoicesStream, new TypeReference<>() {
-            });
-        }
+        sut = new StatementController(factory, view);
+        invoice = invoices.get(0);
     }
 
     @Test
     void statement() {
         // given
-        final Invoice invoice = invoices.get(0);
         final String expected = """
                 청구 내역 (고객명: BigCo)
                   Hamlet: $650.00원 (55석)
@@ -69,7 +48,6 @@ class StatementControllerTest {
     @Test
     void htmlStatement() {
         // given
-        final Invoice invoice = invoices.get(0);
         final String expected = """
                 <h1>청구 내역 (고객명: BigCo)</h1>
                 <table>
@@ -81,8 +59,10 @@ class StatementControllerTest {
                 <p>총액: <em>$1,730.00</em></p>
                 <p>적립 포인트: <em>47</em>점</p>
                 """;
+
         // when
         final String result = sut.htmlStatement(invoice, plays);
+
         // then
         assertThat(result).isEqualTo(expected);
     }

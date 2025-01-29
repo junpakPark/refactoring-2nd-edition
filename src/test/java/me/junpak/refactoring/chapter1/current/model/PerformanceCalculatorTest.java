@@ -2,55 +2,30 @@ package me.junpak.refactoring.chapter1.current.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
+import me.junpak.refactoring.chapter1.Ch01Test;
 import me.junpak.refactoring.chapter1.current.model.calculator.PerformanceCalculatorComposite;
 import me.junpak.refactoring.chapter1.current.model.data.EnrichPerformance;
-import me.junpak.refactoring.chapter1.data.Invoice;
 import me.junpak.refactoring.chapter1.data.Performance;
 import me.junpak.refactoring.chapter1.data.Play;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class PerformanceCalculatorTest {
+class PerformanceCalculatorTest extends Ch01Test {
 
-    private final PerformanceCalculator sut = new PerformanceCalculatorComposite();
-
-    private Map<String, Play> plays;
-    private Invoice invoice;
+    private PerformanceCalculator sut;
+    private Performance performance;
+    private Play play;
 
     @BeforeEach
-    void setUp() throws Exception {
-        final ClassLoader classLoader = getClass().getClassLoader();
-        final ObjectMapper mapper = new ObjectMapper();
-
-        try (
-                final InputStream playsStream = classLoader.getResourceAsStream("chapter1/plays.json");
-                final InputStream invoicesStream = classLoader.getResourceAsStream("chapter1/invoices.json");
-        ) {
-
-            if (playsStream == null || invoicesStream == null) {
-                throw new IllegalStateException("테스트 리소스가 없습니다!");
-            }
-
-            this.plays = mapper.readValue(playsStream, new TypeReference<>() {
-            });
-            final List<Invoice> invoices = mapper.readValue(invoicesStream, new TypeReference<>() {
-            });
-            this.invoice = invoices.get(0);
-        }
+    void setUp() {
+        sut = new PerformanceCalculatorComposite();
+        performance = invoices.get(0).performances().get(0);
+        play = plays.get(performance.playID());
     }
 
     @Test
     void enrichPerformance() {
-        // given
-        final Performance performance = invoice.performances().get(0);
-        final Play play = plays.get(performance.playID());
-
         // when
         final EnrichPerformance actual = sut.enrichPerformance(performance, play);
 
@@ -62,4 +37,5 @@ class PerformanceCalculatorTest {
             assertThat(actual.volumeCredits()).isEqualTo(25);
         });
     }
+
 }

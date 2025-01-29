@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.UncheckedIOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import me.junpak.refactoring.chapter1.data.Invoice;
 import me.junpak.refactoring.chapter1.data.Play;
 
@@ -32,7 +33,7 @@ public final class Ch01DataLoader {
 
     private <T> T loadResource(String path, TypeReference<T> typeReference) {
         try (InputStream inputStream = classLoader.getResourceAsStream(path)) {
-            if (inputStream == null) {
+            if (Objects.isNull(inputStream)) {
                 throw new IllegalStateException("테스트 리소스가 없습니다!: " + path);
             }
             return mapper.readValue(inputStream, typeReference);
