@@ -57,7 +57,7 @@ class PerformanceCalculatorTest {
         // then
         SoftAssertions.assertSoftly(softly -> {
             assertThat(actual.audience()).isEqualTo(performance.audience());
-            assertThat(actual.play()).isEqualTo(play);
+            assertThat(actual.playName()).isEqualTo(play.name());
             assertThat(actual.amount()).isEqualTo(65000);
             assertThat(actual.volumeCredits()).isEqualTo(25);
         });

@@ -11,13 +11,13 @@ public abstract class AbstractPerformanceCalculator implements PerformanceCalcul
     public final EnrichPerformance enrichPerformance(final Performance aPerformance, final Play aPlay) {
         return new EnrichPerformance(
                 aPerformance.audience(),
-                aPlay,
-                amountFor(aPerformance, aPlay),
+                aPlay.name(),
+                amountFor(aPerformance),
                 volumeCreditsFor(aPerformance)
         );
     }
 
-    protected abstract int amountFor(final Performance aPerformance, final Play aPlay);
+    protected abstract int amountFor(final Performance aPerformance);
 
     protected int volumeCreditsFor(final Performance aPerformance) {
         return Math.max(aPerformance.audience() - 30, 0);

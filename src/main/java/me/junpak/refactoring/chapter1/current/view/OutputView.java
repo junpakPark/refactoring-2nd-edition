@@ -15,7 +15,7 @@ public class OutputView {
         for (var perf : statement.performances()) {
             result.append(String.format(
                     "  %s: %s원 (%d석)",
-                    perf.play().name(),
+                    perf.playName(),
                     usd(perf.amount()),
                     perf.audience()
             )).append(LF);
@@ -32,7 +32,7 @@ public class OutputView {
         result.append("<table>").append(LF);
         result.append("  <tr><th>연극</th><th>좌석 수</th><th>금액</th></tr>").append(LF);
         for (var perf : statement.performances()) {
-            result.append(String.format("  <tr><td>%s</td><td>%s</td>", perf.play().name(), perf.audience()));
+            result.append(String.format("  <tr><td>%s</td><td>%s</td>", perf.playName(), perf.audience()));
             result.append(String.format("<td>%s</td></tr>", usd(perf.amount()))).append(LF);
         }
         result.append("</table>").append(LF);
