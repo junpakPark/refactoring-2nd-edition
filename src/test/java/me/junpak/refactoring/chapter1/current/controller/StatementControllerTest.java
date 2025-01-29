@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Map;
 import me.junpak.refactoring.chapter1.current.model.StatementFactory;
 import me.junpak.refactoring.chapter1.current.model.calculator.PerformanceCalculatorComposite;
-import me.junpak.refactoring.chapter1.current.model.data.Invoice;
-import me.junpak.refactoring.chapter1.current.model.data.Play;
 import me.junpak.refactoring.chapter1.current.view.OutputView;
+import me.junpak.refactoring.chapter1.data.Invoice;
+import me.junpak.refactoring.chapter1.data.Play;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

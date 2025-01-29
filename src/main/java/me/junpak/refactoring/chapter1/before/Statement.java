@@ -3,8 +3,8 @@ package me.junpak.refactoring.chapter1.before;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
-import me.junpak.refactoring.chapter1.before.data.Invoice;
-import me.junpak.refactoring.chapter1.before.data.Play;
+import me.junpak.refactoring.chapter1.data.Invoice;
+import me.junpak.refactoring.chapter1.data.Play;
 
 
 public class Statement {

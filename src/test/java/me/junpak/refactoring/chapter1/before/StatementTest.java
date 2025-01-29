@@ -7,8 +7,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-import me.junpak.refactoring.chapter1.before.data.Invoice;
-import me.junpak.refactoring.chapter1.before.data.Play;
+import me.junpak.refactoring.chapter1.data.Invoice;
+import me.junpak.refactoring.chapter1.data.Play;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

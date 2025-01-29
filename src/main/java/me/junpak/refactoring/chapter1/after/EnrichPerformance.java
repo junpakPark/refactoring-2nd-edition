@@ -1,8 +1,8 @@
 package me.junpak.refactoring.chapter1.after;
 
 import java.util.Map;
-import me.junpak.refactoring.chapter1.after.data.Performance;
-import me.junpak.refactoring.chapter1.after.data.Play;
+import me.junpak.refactoring.chapter1.data.Performance;
+import me.junpak.refactoring.chapter1.data.Play;
 
 public record EnrichPerformance(
         String playID,

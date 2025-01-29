@@ -1,6 +1,6 @@
 package me.junpak.refactoring.chapter1.current.model.calculator;
 
-import me.junpak.refactoring.chapter1.current.model.data.Performance;
+import me.junpak.refactoring.chapter1.data.Performance;
 
 public class ComedyPerformanceCalculator extends AbstractPerformanceCalculator {
 

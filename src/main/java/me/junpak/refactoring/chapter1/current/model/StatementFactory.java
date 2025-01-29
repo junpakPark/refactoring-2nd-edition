@@ -3,9 +3,9 @@ package me.junpak.refactoring.chapter1.current.model;
 import java.util.List;
 import java.util.Map;
 import me.junpak.refactoring.chapter1.current.model.data.EnrichPerformance;
-import me.junpak.refactoring.chapter1.current.model.data.Invoice;
-import me.junpak.refactoring.chapter1.current.model.data.Play;
 import me.junpak.refactoring.chapter1.current.model.data.Statement;
+import me.junpak.refactoring.chapter1.data.Invoice;
+import me.junpak.refactoring.chapter1.data.Play;
 
 public class StatementFactory {
 

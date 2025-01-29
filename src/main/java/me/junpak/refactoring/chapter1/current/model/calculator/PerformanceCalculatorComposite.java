@@ -3,8 +3,8 @@ package me.junpak.refactoring.chapter1.current.model.calculator;
 import java.util.Map;
 import me.junpak.refactoring.chapter1.current.model.PerformanceCalculator;
 import me.junpak.refactoring.chapter1.current.model.data.EnrichPerformance;
-import me.junpak.refactoring.chapter1.current.model.data.Performance;
-import me.junpak.refactoring.chapter1.current.model.data.Play;
+import me.junpak.refactoring.chapter1.data.Performance;
+import me.junpak.refactoring.chapter1.data.Play;
 
 public class PerformanceCalculatorComposite implements PerformanceCalculator {
 

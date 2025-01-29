@@ -1,8 +1,8 @@
 package me.junpak.refactoring.chapter1.after.calculator;
 
 import me.junpak.refactoring.chapter1.after.PerformanceCalculator;
-import me.junpak.refactoring.chapter1.after.data.Performance;
-import me.junpak.refactoring.chapter1.after.data.Play;
+import me.junpak.refactoring.chapter1.data.Performance;
+import me.junpak.refactoring.chapter1.data.Play;
 
 public class TragedyPerformanceCalculator extends PerformanceCalculator {
 

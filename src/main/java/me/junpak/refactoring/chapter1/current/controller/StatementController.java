@@ -2,9 +2,9 @@ package me.junpak.refactoring.chapter1.current.controller;
 
 import java.util.Map;
 import me.junpak.refactoring.chapter1.current.model.StatementFactory;
-import me.junpak.refactoring.chapter1.current.model.data.Invoice;
-import me.junpak.refactoring.chapter1.current.model.data.Play;
 import me.junpak.refactoring.chapter1.current.view.OutputView;
+import me.junpak.refactoring.chapter1.data.Invoice;
+import me.junpak.refactoring.chapter1.data.Play;
 
 public class StatementController {
 
