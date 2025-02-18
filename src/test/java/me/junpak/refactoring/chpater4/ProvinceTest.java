@@ -3,6 +3,7 @@ package me.junpak.refactoring.chpater4;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.ArrayList;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,6 +50,18 @@ class ProvinceTest {
         SoftAssertions.assertSoftly(softly -> {
             assertThat(asia.getShortfall()).isEqualTo(-6);
             assertThat(asia.getProfit()).isEqualTo(292);
+        });
+    }
+
+    @Test
+    void noProducer() {
+        // Action
+        final Province noProducer = new Province(new ProvinceData("No Producer", new ArrayList<>(), 30, 20));
+
+        // Assert
+        SoftAssertions.assertSoftly(softly -> {
+            assertThat(noProducer.getShortfall()).isEqualTo(30);
+            assertThat(noProducer.getProfit()).isZero();
         });
     }
 
