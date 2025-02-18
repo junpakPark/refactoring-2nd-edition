@@ -24,4 +24,16 @@ class ProvinceTest {
         assertThat(shortfall).isEqualTo(5);
     }
 
+    @Test
+    void profit() {
+        // Assert
+        final Province asia = new Province(DATA_LOADER.sampleProvinceData());
+
+        // Action
+        final int profit = asia.getProfit();
+
+        // Assert
+        assertThat(profit).isEqualTo(230);
+    }
+
 }
