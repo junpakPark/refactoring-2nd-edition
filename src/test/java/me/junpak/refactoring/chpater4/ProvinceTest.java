@@ -1,6 +1,9 @@
 package me.junpak.refactoring.chpater4;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Test;
 
 class ProvinceTest {
 
@@ -8,5 +11,17 @@ class ProvinceTest {
             ProvinceTest.class.getClassLoader(),
             new ObjectMapper()
     );
+
+    @Test
+    void shortfall() {
+        // Assert
+        final Province asia = new Province(DATA_LOADER.sampleProvinceData());
+
+        // Action
+        final int shortfall = asia.getShortfall();
+
+        // Assert
+        assertThat(shortfall).isEqualTo(5);
+    }
 
 }
