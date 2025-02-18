@@ -1,6 +1,7 @@
 package me.junpak.refactoring.chpater4;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
@@ -87,5 +88,13 @@ class ProvinceTest {
             assertThat(asia.getShortfall()).isEqualTo(-26);
             assertThat(asia.getProfit()).isEqualTo(-10);
         });
+    }
+
+    @Test
+    void emptyStringDemand() {
+        // Action
+        // Assert
+        assertThatThrownBy(() -> asia.setDemand(""))
+                .isInstanceOf(NumberFormatException.class);
     }
 }
