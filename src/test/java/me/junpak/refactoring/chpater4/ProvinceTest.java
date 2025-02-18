@@ -65,4 +65,16 @@ class ProvinceTest {
         });
     }
 
+    @Test
+    void zeroDemand() {
+        // Action
+        asia.setDemand("0");
+
+        // Assert
+        SoftAssertions.assertSoftly(softly -> {
+            assertThat(asia.getShortfall()).isEqualTo(-25);
+            assertThat(asia.getProfit()).isZero();
+        });
+    }
+
 }
