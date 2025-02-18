@@ -3,6 +3,7 @@ package me.junpak.refactoring.chpater4;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +38,18 @@ class ProvinceTest {
 
         // Assert
         assertThat(profit).isEqualTo(230);
+    }
+
+    @Test
+    void changeProduction() {
+        // Action
+        asia.getProducers().get(0).setProduction("20");
+
+        // Assert
+        SoftAssertions.assertSoftly(softly -> {
+            assertThat(asia.getShortfall()).isEqualTo(-6);
+            assertThat(asia.getProfit()).isEqualTo(292);
+        });
     }
 
 }
