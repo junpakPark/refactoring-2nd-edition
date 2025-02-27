@@ -1,4 +1,4 @@
-package me.junpak.refactoring.chpater4;
+package me.junpak.refactoring.chapter4;
 
 import java.util.List;
 
