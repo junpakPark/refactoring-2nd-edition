@@ -1,4 +1,4 @@
-package me.junpak.refactoring.chpater4;
+package me.junpak.refactoring.chapter4;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

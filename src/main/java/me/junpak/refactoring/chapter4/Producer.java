@@ -1,4 +1,4 @@
-package me.junpak.refactoring.chpater4;
+package me.junpak.refactoring.chapter4;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
